@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/18 03:09:02 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/18 13:18:38 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,41 @@
 # include "..libs/libft/libft.h"
 # include "..libs/gnl/get_next_line.h"
 
-/** Mandatory portion **/
-void	error_chk(void);
-char	*path_finder(char *cmd, char **envp);
-void	execution(char *argv, char **envp);
+
+typedef struct pipe
+{
+	int		argc;
+	int		indx_cmd;
+	int		in_file;
+	int		out_file;
+	int		offset;
+	int		lock_state;
+	int		**pipe;
+	char	error_str[128];
+	char	**argv;
+	char	**envp;
+}	t_pipe;
+
+/** Pipe opetator initialization and file handling **/
+int		pipex(int argc, char **argv, char **envp);
+int		pipe_init(int argc, char **argv, char **envp, t_pipe *pipex);
+int		exec_cmd(t_pipe *pipex);
+int		file_open(t_pipe *pipe);
+int		file_close(t_pipe *pipex);
+int		pipe_exit(t_pipe *pipex);
+
+void	cmd_not_found(char *cmd, char **split_cmd, t_pipe *pipex);
+void	dup42(int fd1, int fd2, char **cmd, t_pipe *pipex);
+
+/** Error Handling **/
+void	exec_perror(char **cmd, char *error, int code, t_pipe *pipex);
+void	exit_perror(char *error, int code);
+
+/** Reading and execution of strdin and out **/
+void	split_mtx_free(char **mtx);
+void	replace_all_mtx(char **cmd, char *old_w, char *new_w);
+void	std_in_read(int *fd, char *limiter);
+void	replace_all_str(char **str, char *old_w, char *new_w);
 
 /** Bonus portion **/
 int		file_open(char *argv, int i);
