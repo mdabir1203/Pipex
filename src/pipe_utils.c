@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:13:34 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/18 14:18:08 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/18 14:20:28 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	replace_all_str(char **str, char *old_w, char *new_w)
 	if (!str || !*str)
 		return ;
 	while (ft_strnstr(*str, old_w, ft_strlen(*str)))
-		*str = ft_str_replace(*str, old_w, new_w);
+		*str = ft_replace_str(*str, old_w, new_w);
 }
