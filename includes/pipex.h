@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/18 13:58:06 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/18 14:11:50 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	exit_perror(char *error, int code_no);
 
 /** Reading and execution of strdin and out **/
 void	free_split_str(char **str);
-void	replace_all_str(char **cmd, char *old_w, char *new_w);
+void	replace_all_cmd(char **cmd, char *old_w, char *new_w);
 void	std_in_read(int *fd, char *limiter);
 void	replace_all_str(char **str, char *old_w, char *new_w);
 
