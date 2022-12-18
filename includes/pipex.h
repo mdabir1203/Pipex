@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/18 13:18:38 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/18 13:58:06 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	cmd_not_found(char *cmd, char **split_cmd, t_pipe *pipex);
 void	dup42(int fd1, int fd2, char **cmd, t_pipe *pipex);
 
 /** Error Handling **/
-void	exec_perror(char **cmd, char *error, int code, t_pipe *pipex);
-void	exit_perror(char *error, int code);
+void	exec_perror(char **cmd, char *error, int code_no, t_pipe *pipex);
+void	exit_perror(char *error, int code_no);
 
 /** Reading and execution of strdin and out **/
-void	split_mtx_free(char **mtx);
-void	replace_all_mtx(char **cmd, char *old_w, char *new_w);
+void	free_split_str(char **str);
+void	replace_all_str(char **cmd, char *old_w, char *new_w);
 void	std_in_read(int *fd, char *limiter);
 void	replace_all_str(char **str, char *old_w, char *new_w);
 
