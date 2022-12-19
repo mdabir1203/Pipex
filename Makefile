@@ -6,7 +6,7 @@
 #    By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/18 02:39:41 by mabbas            #+#    #+#              #
-#    Updated: 2022/12/19 01:13:02 by mabbas           ###   ########.fr        #
+#    Updated: 2022/12/19 04:15:44 by mabbas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,20 +19,21 @@ INC     = -I ./includes/
 
 LIBFT  	= ./libs/libft/
 
-SRCS = src/pipex.c \
-	   src/file_utils.c \
+SRCS = src/main.c \
+	   src/pipex.c \
+	   src/pipex_utils.c \
 	   libs/gnl/get_next_line.c \
-	   libs/gnl/get_next_line_utils.c \
-	#    src/initialization.c \
+	   libs/gnl/get_next_line_utils.c
 
 SRCS_B = src/pipex_bonus.c \
-		 src/utils.c \
-		 src/utils_bonus.c \
+		 src/pipex_utils.c \
+		 src/pipex_utils_bonus.c \
 		 libs/gnl/get_next_line.c \
 		 libs/gnl/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}
-OBJ_PATH = objs/
+OBJS_B = ${SRCS_B:.c=.o}
+
 
 SUBM_STATE := $(shell find libs/libft -type f && libs/gnl -type f)
 
