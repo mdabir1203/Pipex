@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:31:23 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 03:37:08 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 04:11:50 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 /** Child process inside a fork that runs , takes the input file, puts the
  *  output inside a pipe and closes with the exec function */
 
-void	process_child(char **argv, char **envp, int fd)
+void	process_child(char **argv, char **envp, int *fd)
 {
-	t_pipe	piped;
-	int		in_file;
+	t_pipe	*piped;
 
-	in_file = open(argv[1], O_RDONLY, 0777);
-	if (in_file == -1)
+	piped = NULL;
+	piped->in_file = open(argv[1], O_RDONLY, 0777);
+	if (piped->in_file == -1)
 		error();
-	dup2(piped.fd[1], STDOUT_FILENO);
-	dup2(in_file, STDIN_FILENO);
-	close(piped.fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
+	dup2(piped->in_file, STDIN_FILENO);
+	close(fd[0]);
 	exec(argv[2], envp);
 }
 
@@ -52,8 +52,9 @@ void	process_parent(char **argv, char **envp, int *fd)
 
 int	pipex(int argc, char **argv, char **envp)
 {
-	t_pipe	pipex;
+	t_pipe	*pipex;
 
+	pipex = NULL;
 	if (argc > 5)
 	{
 		ft_putendl_fd("Argument threshold exceeded!\n", 2);
@@ -61,15 +62,15 @@ int	pipex(int argc, char **argv, char **envp)
 	}
 	else if (argc == 5)
 	{
-		if (pipe(pipex.fd) == -1)
+		if (pipe(pipex->fd) == -1)
 			error();
-		pipex.pid1 = fork();
-		if (pipex.pid1 == -1)
+		pipex->pid1 = fork();
+		if (pipex->pid1 == -1)
 			error();
-		if (pipex.pid1 == 0)
-			process_child(argv, envp, pipex.fd);
-		waitpid(pipex.pid1, NULL, 0);
-		process_parent(argv, envp, pipex.fd);
+		if (pipex->pid1 == 0)
+			process_child(argv, envp, pipex->fd);
+		waitpid(pipex->pid1, NULL, 0);
+		process_parent(argv, envp, pipex->fd);
 	}
 	else
 	{

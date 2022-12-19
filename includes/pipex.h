@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 03:54:44 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 04:10:54 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ char	*path_find(char *cmd, char **envp);
 void	exec(char *argv, char **envp);
 
 int		file_open(char *argv, int i);
-void	use(void);
+void	display(void);
 
 #endif
