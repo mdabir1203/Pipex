@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:31:23 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 02:02:31 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 03:37:08 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	pipex(int argc, char **argv, char **envp)
 	else
 	{
 		ft_putendl_fd("\033[32mArguments are wrong Bro!!\n\e[0m", 2);
-		ft_putendl_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n");
+		ft_putendl_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 2);
 	}
 	return (0);
 }
