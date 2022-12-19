@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 03:36:07 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 03:42:30 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 04:02:27 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,26 @@ void	display(void)
 	exit(EXIT_SUCCESS);
 }
 
-/** Fnc to open the files with right flag **/
+/** Fnc to open the files with right flag 
+ *  Here I had an array f structs containing all the necessary info
+ *  for each file opening mode. Also added descriptinve name for the
+ *  mode("append"). I used the global var g_file_mode array to replace
+ *  if else statements. When the array of struct matches  **/
 int	file_open(char *argv, int i)
 {
 	int	file;
+	int	j;
 
-	file = 0;
-	if (i == 0)
-		file = open(argv, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	else if (i == 1)
-		file = open(argv, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	else if (i == 2)
-		file = open(argv, O_RDONLY, 0777);
+	file = -1;
+	j = 0;
+	while (j++ < 3)
+	{
+		if (g_file_mode[j].mode == i)
+		{
+			file = open(argv, g_file_mode[j].mode, 0777);
+			break ;
+		}
+	}
 	if (file == -1)
 		error();
 	return (file);
