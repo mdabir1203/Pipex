@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 02:02:36 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 03:34:21 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct pipe
 {
 	int		fd[2];
 	pid_t	pid1;
+	pid_t	reader;
+	int		in_file;
+	int		out_file;
 }	t_pipe;
 
 /** Pipe opetator initialization and file handling **/
