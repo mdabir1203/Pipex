@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 03:34:21 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 03:54:44 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../libs/libft/libft.h"
 # include "../libs/gnl/get_next_line.h"
 
-typedef struct pipe
+typedef struct s_pipe
 {
 	int		fd[2];
 	pid_t	pid1;
@@ -32,12 +32,22 @@ typedef struct pipe
 	int		out_file;
 }	t_pipe;
 
+typedef struct s_mode
+{
+	int		mode;
+	char	*name;
+}	t_filemode;
+
+t_filemode	g_file_mode[] = {{O_WRONLY | O_CREAT | O_APPEND, "append"}, \
+	{O_WRONLY | O_CREAT | O_TRUNC, "truncate"}, \
+	{O_RDONLY, "read"}};
+
 /** Pipe opetator initialization and file handling **/
 void	error(void);
 char	*path_find(char *cmd, char **envp);
 void	exec(char *argv, char **envp);
 
-int		file_open(const char *argv, int i);
+int		file_open(char *argv, int i);
 void	use(void);
 
 #endif
