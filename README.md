@@ -1,6 +1,6 @@
 # Pipex
 
-##Learning Goal: 
+## Learning Goal: 
 
 [1.] Usage of the Pipe ( | ) operator,
 
