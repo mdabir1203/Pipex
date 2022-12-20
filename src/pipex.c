@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:31:23 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 04:11:50 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/20 02:31:51 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,15 @@ void	process_parent(char **argv, char **envp, int *fd)
 	exec(argv[3], envp);
 }
 
-/** This fnc runs the child and parent process or displays an
+/** This two fnc runs the child and parent process or displays an
  *  an error message if wrong arguments are passed **/
+void	msg(void)
+{
+	ft_putendl_fd("\033[32mArguments are wrong Bro!!\n\e[0m", 2);
+	ft_putendl_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 2);
+}
 
-int	pipex(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	*pipex;
 
@@ -73,9 +78,6 @@ int	pipex(int argc, char **argv, char **envp)
 		process_parent(argv, envp, pipex->fd);
 	}
 	else
-	{
-		ft_putendl_fd("\033[32mArguments are wrong Bro!!\n\e[0m", 2);
-		ft_putendl_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 2);
-	}
+		msg();
 	return (0);
 }
