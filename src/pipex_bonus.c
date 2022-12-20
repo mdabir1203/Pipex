@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 03:03:44 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 03:43:31 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 04:21:39 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	process_child(char *argv, char **envp)
  *  with get_next_line until reaching the delimiter word and puts
  *  the output inside a pipe. 
  *  like suppose cmd << delimiter. THis helps to avoid escape
- *  special characters in the text. **/
+ *  special characters in the text.
+ *  Here I used fd[0] to read from the stdin. **/
 
 void	heredoc(char *limiter, int argc)
 {
@@ -57,7 +58,7 @@ void	heredoc(char *limiter, int argc)
 	if (pipex.reader == 0)
 	{
 		close(pipex.fd[0]);
-		while (get_next_line(pipex.fd) != NULL)
+		while (get_next_line(pipex.fd[0]) != NULL)
 		{
 			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
 				exit(EXIT_SUCCESS);

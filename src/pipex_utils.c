@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_utils.c                                       :+:      :+:    :+:   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:13:34 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 03:02:34 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/20 02:34:09 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ char	*path_find(char *cmd, char **envp)
 	while (path_var[i])
 	{
 		partial_path = ft_strjoin(path_var[i], "/");
-		path = ft_strjoin(path_var, cmd);
+		path = ft_strjoin(*path_var, cmd);
 		free(partial_path);
 		if (get_access(path, 0) == 0)
 			return (path);
 		free (path);
 		i++;
 	}
-	free_path(path_var);
+	free_ptr(path_var);
 }
 
 void	error(void)

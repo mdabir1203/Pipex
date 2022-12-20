@@ -6,7 +6,7 @@
 #    By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/18 02:39:41 by mabbas            #+#    #+#              #
-#    Updated: 2022/12/19 04:15:44 by mabbas           ###   ########.fr        #
+#    Updated: 2022/12/20 02:31:26 by mabbas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ INC     = -I ./includes/
 
 LIBFT  	= ./libs/libft/
 
-SRCS = src/main.c \
-	   src/pipex.c \
+SRCS = src/pipex.c \
 	   src/pipex_utils.c \
 	   libs/gnl/get_next_line.c \
 	   libs/gnl/get_next_line_utils.c
