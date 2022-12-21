@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:31:23 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/20 02:31:51 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/21 04:03:55 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ void	process_child(char **argv, char **envp, int *fd)
 
 void	process_parent(char **argv, char **envp, int *fd)
 {
-	int	out_file;
+	t_pipe	*pipex;
+	int		j;
 
-	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (out_file == -1)
+	j = 1;
+	pipex = NULL;
+	pipex->out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (pipex->out_file == -1)
 		error();
 	dup2(fd[0], STDIN_FILENO);
-	dup2(out_file, STDOUT_FILENO);
+	dup2(pipex->out_file, STDOUT_FILENO);
 	close(fd[1]);
 	exec(argv[3], envp);
 }
