@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/20 02:30:50 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/21 04:18:17 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ typedef struct s_pipe
 	int		in_file;
 	int		out_file;
 }	t_pipe;
-
-typedef struct s_mode
-{
-	int		mode;
-	char	*name;
-}	t_filemode;
-
-t_filemode	g_file_mode[] = {{O_WRONLY | O_CREAT | O_APPEND, "append"}, \
-	{O_WRONLY | O_CREAT | O_TRUNC, "truncate"}, \
-	{O_RDONLY, "read"}};
 
 /** Pipe opetator initialization and file handling **/
 void	error(void);

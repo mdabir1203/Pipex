@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:13:34 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/20 02:34:09 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/21 03:17:52 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_ptr(char **ptr)
 
 /**Function to look into the path line inside the environment variable
  * Each command path is splitted and tested and then returns the correct value.
+ * access function is used to check accessibility of a file
 **/
 char	*path_find(char *cmd, char **envp)
 {
@@ -42,12 +43,13 @@ char	*path_find(char *cmd, char **envp)
 		partial_path = ft_strjoin(path_var[i], "/");
 		path = ft_strjoin(*path_var, cmd);
 		free(partial_path);
-		if (get_access(path, 0) == 0)
+		if (access(path, 0) == 0)
 			return (path);
 		free (path);
 		i++;
 	}
 	free_ptr(path_var);
+	return (0);
 }
 
 void	error(void)
