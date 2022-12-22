@@ -6,7 +6,7 @@
 #    By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/18 02:39:41 by mabbas            #+#    #+#              #
-#    Updated: 2022/12/20 02:31:26 by mabbas           ###   ########.fr        #
+#    Updated: 2022/12/21 04:28:57 by mabbas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME    = pipex
 NAME_B  = pipex_bonus
 #define compiler and flags for Debugger
 CC 		= gcc
-CFLAGS 	= -Wall -Werror -Wextra -g
+CFLAGS 	= -Wall -Werror -Wextra -g -fsanitize=address
 INC     = -I ./includes/
 
 LIBFT  	= ./libs/libft/
@@ -81,6 +81,12 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)libft.a -o $(NAME)
 	@echo "Pipex:	\033[1;32mCOMPILED⛓️\033[m"
 
+
+bonus: ${bonus_b}
+
+${bonus_b}: ${OBJS_B}
+			@MAKE re -C {(LIBFT)}
+			@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)libft.a -o {bonus_b}
 clean:
 	@echo "$(PURPLE)🚿 Sweeping in progress $(B_RED)🚿"
 	@rm -f $(OBJS)
@@ -92,9 +98,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "$(GREEN) I am gone forever🚿🚿🚿 $(B_RED)🚿🚿 $(NC)"
 
-re: fclean all
+re: fclean all bonus
 
-.phony: all libft clean fclean
-.silent: all libft clean fclean
-
-	
+.phony: all libft clean fclean bonus
+.silent: all libft clean fclean bonus

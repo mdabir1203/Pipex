@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 03:03:44 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/19 04:21:39 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/22 02:23:59 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,26 @@ void	heredoc(char *limiter, int argc)
 int	main(int argc, char **argv, char **envp)
 {
 	int		i;
-	t_pipe	*pipex;
+	t_pipe	pipex;
 
 	if (argc >= 5)
 	{
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 		{
 			i = 3;
-			pipex->out_file = file_open(argv[argc - 1], 0);
+			pipex.out_file = file_open(argv[argc - 1], 0);
 			heredoc(argv[2], argc);
 		}
 		else
 		{
 			i = 2;
-			pipex->out_file = file_open(argv[argc - 1], 1);
-			pipex->out_file = file_open(argv[1], 2);
-			dup2(pipex->in_file, STDIN_FILENO);
+			pipex.out_file = file_open(argv[argc - 1], 1);
+			pipex.out_file = file_open(argv[1], 2);
+			dup2(pipex.in_file, STDIN_FILENO);
 		}
 		while (i < argc -2)
 			process_child(argv[i++], envp);
-		dup2(pipex->out_file, STDOUT_FILENO);
+		dup2(pipex.out_file, STDOUT_FILENO);
 		exec(argv[argc - 2], envp);
 	}
 	display();

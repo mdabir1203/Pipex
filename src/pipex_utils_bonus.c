@@ -6,12 +6,12 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 03:36:07 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/21 04:17:57 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/21 04:19:54 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-#include "..includes/mode.h"
+#include "../includes/mode.h"
 
 void	display(void)
 {
