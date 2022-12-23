@@ -32,7 +32,7 @@ Looking underneath the infamous ( | ) command and learning to execute multiple c
 
 ## **heredoc** applications: 
 
-<img width="796" alt="image" src="https://user-images.githubusercontent.com/66947064/209409101-dca9489e-4eee-4213-90f2-4f2cd183066e.png">
+<img width="450" alt="image" src="https://user-images.githubusercontent.com/66947064/209409101-dca9489e-4eee-4213-90f2-4f2cd183066e.png">
 
 
 
