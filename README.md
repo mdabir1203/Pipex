@@ -26,11 +26,11 @@ Looking underneath the infamous ( | ) command and learning to execute multiple c
 
 
 
-One basic applications of the operator is here:
+## One basic applications of the operator is here:
 
 <img width="574" alt="image" src="https://user-images.githubusercontent.com/66947064/209409032-814f03b1-1816-47b7-aff0-927a1110cf24.png">
 
-**heredoc** applications: 
+## **heredoc** applications: 
 
 <img width="796" alt="image" src="https://user-images.githubusercontent.com/66947064/209409101-dca9489e-4eee-4213-90f2-4f2cd183066e.png">
 
@@ -38,7 +38,7 @@ One basic applications of the operator is here:
 
 
 
-Sources Used to learn : 
+## Sources Used to learn : 
 
 1. https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
 2. https://www.youtube.com/watch?v=6xbLgZpOBi8
