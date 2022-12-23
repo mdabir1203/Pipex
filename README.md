@@ -21,3 +21,5 @@ Looking underneath the infamous ( | ) command and learning to execute multiple c
 [7.] unlink , access, strerror
 
 [8.] How to shorten your Flags(O_CREAT) for open/close function by using void pointer.
+
+
