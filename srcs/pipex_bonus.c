@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:47:16 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/23 02:39:56 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/23 02:57:18 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ void	child_process(char *argv, char **envp)
 	}
 }
 
+static void	inputs(int fd, char *line, char *limiter)
+{
+	if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+		exit(EXIT_SUCCESS);
+	write(fd, line, ft_strlen(line));
+	free(line);
+}
+
 /* Function who make a child process that will read from the stdin with
  get_next_line until it find the limiter word and then put the output inside a
  pipe. The main process will change his stdin for the pipe file descriptor. */
@@ -57,12 +65,7 @@ void	here_doc(char *limiter, int argc)
 	{
 		close(fd[0]);
 		while (get_next_line(&line))
-		{
-			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
-				exit(EXIT_SUCCESS);
-			write(fd[1], line, ft_strlen(line));
-			free(line);
-		}
+			inputs(fd[1], line, limiter);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 02:45:19 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/23 02:45:27 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/23 02:49:33 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,30 @@ void	execute(char *argv, char **envp)
 		error();
 }
 
-/* Function that will read input from the terminal and return line. */
-int	get_next_line(char **line)
-{
-	char	*buffer;
-	int		readed;
-	int		i;
-	char	c;
+// /* Function that will read input from the terminal and return line. */
+// int	get_next_line(char **line)
+// {
+// 	char	*buffer;
+// 	int		readed;
+// 	int		i;
+// 	char	c;
 
-	i = 0;
-	readed = 0;
-	buffer = (char *)malloc(10000);
-	if (!buffer)
-		return (-1);
-	readed = read(0, &c, 1);
-	while (readed && c != '\n' && c != '\0')
-	{
-		if (c != '\n' && c != '\0')
-			buffer[i] = c;
-		i++;
-		readed = read(0, &c, 1);
-	}
-	buffer[i] = '\n';
-	buffer[++i] = '\0';
-	*line = buffer;
-	free(buffer);
-	return (readed);
-}
+// 	i = 0;
+// 	readed = 0;
+// 	buffer = (char *)malloc(10000);
+// 	if (!buffer)
+// 		return (-1);
+// 	readed = read(0, &c, 1);
+// 	while (readed && c != '\n' && c != '\0')
+// 	{
+// 		if (c != '\n' && c != '\0')
+// 			buffer[i] = c;
+// 		i++;
+// 		readed = read(0, &c, 1);
+// 	}
+// 	buffer[i] = '\n';
+// 	buffer[++i] = '\0';
+// 	*line = buffer;
+// 	free(buffer);
+// 	return (readed);
+// }
