@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 01:03:59 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/23 01:04:01 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/23 22:12:14 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	child_process(char **argv, char **envp, int *fd)
 }
 
 /* Parent process that take the data from the pipe, change the output for the
- fileout and also close with the exec function */
+ fileout and also close with the exec function*/
 void	parent_process(char **argv, char **envp, int *fd)
 {
 	int		fileout;
