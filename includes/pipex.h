@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 02:33:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/12/21 04:18:17 by mabbas           ###   ########.fr       */
+/*   Created: 2021/08/02 09:58:35 by gcollet           #+#    #+#             */
+/*   Updated: 2022/12/23 02:31:56 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,19 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include <string.h>
 # include <fcntl.h>
-# include <errno.h>
-# include "../libs/libft/libft.h"
-# include "../libs/gnl/get_next_line.h"
+# include "../lib/libft/libft.h"
 
-typedef struct s_pipe
-{
-	int		fd[2];
-	pid_t	pid1;
-	pid_t	reader;
-	int		in_file;
-	int		out_file;
-}	t_pipe;
-
-/** Pipe opetator initialization and file handling **/
+/* Mandatory functions */
 void	error(void);
-char	*path_find(char *cmd, char **envp);
-void	exec(char *argv, char **envp);
-
-int		file_open(char *argv, int i);
-void	display(void);
+char	*find_path(char *cmd, char **envp);
+void	execute(char *argv, char **envp);
+int		get_next_line(char **line);
+/* Bonus functions */
+int		open_file(char *argv, int i);
+void	usage(void);
 
 #endif

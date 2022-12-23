@@ -5,96 +5,61 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/18 02:39:41 by mabbas            #+#    #+#              #
-#    Updated: 2022/12/20 02:31:26 by mabbas           ###   ########.fr        #
+#    Created: 2022/12/23 01:03:33 by mabbas            #+#    #+#              #
+#    Updated: 2022/12/23 03:05:17 by mabbas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME    = pipex
-NAME_B  = pipex_bonus
-#define compiler and flags for Debugger
+
+
+PROG	= pipex
+PROG_B  = pipex_bonus
+
+SRCS 	= srcs/pipex.c srcs/utils.c
+OBJS 	= ${SRCS:.c=.o}
+MAIN	= srcs/pipex.c
+
+SRCS_B	= srcs/pipex_bonus.c srcs/utils.c srcs/utils_bonus.c
+OBJS_B	= ${SRCS_B:.c=.o}
+MAIN_B	= srcs/pipex_bonus.c
+
+HEADER	= -Iincludes
+
 CC 		= gcc
-CFLAGS 	= -Wall -Werror -Wextra -g
-INC     = -I ./includes/
+CFLAGS 	= -Wall -Wextra -Werror -g
 
-LIBFT  	= ./libs/libft/
+.c.o:		%.o : %.c
+					@gcc ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
 
-SRCS = src/pipex.c \
-	   src/pipex_utils.c \
-	   libs/gnl/get_next_line.c \
-	   libs/gnl/get_next_line_utils.c
+all: 		${PROG}
 
-SRCS_B = src/pipex_bonus.c \
-		 src/pipex_utils.c \
-		 src/pipex_utils_bonus.c \
-		 libs/gnl/get_next_line.c \
-		 libs/gnl/get_next_line_utils.c
-
-OBJS = ${SRCS:.c=.o}
-OBJS_B = ${SRCS_B:.c=.o}
+${PROG}:	${OBJS}
+					@echo "\033[33m----Compiling libft---"
+					@make re -C ./lib/libft
+					@$(CC) ${OBJS} -Llib/libft -lft -o ${PROG}
+					@echo "\033[32mPipex Compiled! (\033[31m\033[32m_\033[31m\033[32m)\n"
 
 
-SUBM_STATE := $(shell find libs/libft -type f && libs/gnl -type f)
+bonus:		${PROG_B}
 
-ifeq ($(SUBM_STATE),)
-SUBM_FLAG	= submodule
-else
-SUBM_FLAG 	=
-endif
-
-NC		:= \033[m
-B_RED	:= \033[1;31m
-RED 	:= \033[0;31m
-B_GREEN	:= \033[1;32m
-GREEN 	:= \033[0;33m
-B_BLUE 	:= \033[1;34m
-BLUE 	:= \033[0;34m
-PURPLE	:= \033[0;35m
-WHCOLOR	:= \033[0;40m
-
-
-UNAME = $(shell uname -s)
-
-ifeq ($(UNAME),Linux)
-	VALGRIND = valgrind -q --leak-check=full --track-origin=yes
-else 
-	detected_OS := $(shell sh -c 'uname 2>/dev/null || echo You are Mac stupid!_!')
-endif
-
-all: libft $(NAME)
-
-%.o : %.c 
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-
-submodule:
-	git submodule init
-	git submodule update
-
-libft:
-	@echo "____!!!$(BLUE)----- Compiling Libft------$(NC)"
-	@$(MAKE) -C $(LIBFT)
-	@$(MAKE) -C $(LIBFT) bonus
-	@echo "Compiling Libft:	\033[1;32mOK\033[m"
-	
-
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)libft.a -o $(NAME)
-	@echo "Pipex:	\033[1;32mCOMPILED⛓️\033[m"
+${PROG_B}:	${OBJS_B}
+					@echo "\033[33m----Compiling lib----"
+					@make re -C ./lib/libft
+					@$(CC) ${OBJS_B} -Llib/libft -lft -o pipex
+					@echo "\033[32mPipex Bonus Compiled!(\033[31m\033[32m_\033[31m\033[32m)\n"
 
 clean:
-	@echo "$(PURPLE)🚿 Sweeping in progress $(B_RED)🚿"
-	@rm -f $(OBJS)
-	@$(MAKE) -C $(LIBFT) clean
-	@sleep 0.5
-	@echo "$(B_GREEN) Swept off 🧹🧹🧹$(NC)"
+					@make clean -C ./lib/libft
+					@rm -f ${OBJS} ${OBJS_B}
 
-fclean: clean
-	@rm -f $(NAME)
-	@echo "$(GREEN) I am gone forever🚿🚿🚿 $(B_RED)🚿🚿 $(NC)"
+fclean: 	clean
+					@make fclean -C ./lib/libft
+					@rm -f $(NAME)
+					@rm -f ${PROG}
+					@echo "\n\033[31mDeleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n"
 
-re: fclean all
+re:			fclean all
 
-.phony: all libft clean fclean
-.silent: all libft clean fclean
+re_bonus:	fclean bonus
 
-	
+.PHONY: all clean fclean re re_bonus bonus
